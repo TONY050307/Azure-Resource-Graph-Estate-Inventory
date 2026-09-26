@@ -1,0 +1,5 @@
+ResourceContainers
+| where type =~ 'microsoft.resources/subscriptions/resourcegroups'
+| extend TagCount = array_length(bag_keys(tags))
+| project name, location, TagCount, tags
+| order by TagCount asc
